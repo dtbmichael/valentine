@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Jasmine, Be My Valentine 💖</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top, #ff9a9e, #fad0c4, #ff758c);
+    animation: bgMove 10s infinite alternate;
+}
+
+@keyframes bgMove {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(20deg); }
+}
+
+.card {
+    backdrop-filter: blur(15px);
+    background: rgba(255,255,255,0.15);
+    padding: 50px;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    text-align: center;
+    color: white;
+    width: 90%;
+    max-width: 500px;
+    z-index: 10;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.typing {
+    border-right: 3px solid white;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    animation: typing 3s steps(30, end) forwards;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 12px 28px;
+    font-size: 18px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+#yesBtn {
+    background: #ff4d6d;
+    color: white;
+}
+
+#yesBtn:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 20px #fff;
+}
+
+#noBtn {
+    background: rgba(255,255,255,0.4);
+    color: white;
+    position: absolute;
+}
+
+.floating {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 6s linear forwards;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+</style>
+</head>
+<body>
+
+<audio autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mp3">
+</audio>
+
+<canvas id="fireworks"></canvas>
+
+<div class="card">
+    <h1 class="typing">Jasmine, Will You Be My Valentine? 💖</h1>
+    <p>
+        Every moment with you feels magical ✨  
+        My world shines brighter because of you ❤️  
+        Be mine this Valentine’s Day 🌹
+    </p>
+
+    <button id="yesBtn" onclick="celebrate()">Yes 💍</button>
+    <button id="noBtn">No 😅</button>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", () => {
+    noBtn.style.top = Math.random() * window.innerHeight + "px";
+    noBtn.style.left = Math.random() * window.innerWidth + "px";
+});
+
+// Floating hearts constantly
+function floatHearts() {
+    const el = document.createElement("div");
+    el.className = "floating";
+    el.innerHTML = Math.random() > 0.5 ? "💖" : "🌹";
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.fontSize = (20 + Math.random() * 30) + "px";
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 6000);
+}
+setInterval(floatHearts, 300);
+
+function celebrate() {
+    alert("Jasmine 💖 You just made me the happiest man alive! 🌹✨");
+    startFireworks();
+}
+
+// Simple Fireworks Effect
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+function startFireworks() {
+    for (let i = 0; i < 100; i++) {
+        particles.push({
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            radius: Math.random() * 4,
+            dx: (Math.random() - 0.5) * 10,
+            dy: (Math.random() - 0.5) * 10
+        });
+    }
+    animate();
+}
+
+function animate() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+    });
+    requestAnimationFrame(animate);
+}
+</script>
+
+</body>
+</html>
