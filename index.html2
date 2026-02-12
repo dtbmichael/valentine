@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Jasmine, Be My Valentine 💖</title>
+<title>Alice, Be My Valentine 💖</title>
 
 <style>
 body {
@@ -31,8 +31,8 @@ body {
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     text-align: center;
     color: white;
-    width: 90%;
-    max-width: 500px;
+    width: 750%;
+    max-width: 300px;
     z-index: 10;
 }
 
@@ -112,11 +112,12 @@ canvas {
 <canvas id="fireworks"></canvas>
 
 <div class="card">
-    <h1 class="typing">Jasmine, Will You Be My Valentine? 💖</h1>
+    <h1 class="typing">Alice, Will You Be My Valentine? 💖</h1>
     <p>
         Every moment with you feels magical ✨  
         My world shines brighter because of you ❤️  
         Be mine this Valentine’s Day 🌹
+        I Love You
     </p>
 
     <button id="yesBtn" onclick="celebrate()">Yes 💍</button>
@@ -144,13 +145,13 @@ function floatHearts() {
 setInterval(floatHearts, 300);
 
 function celebrate() {
-    alert("Jasmine 💖 You just made me the happiest man alive! 🌹✨");
+    alert("Alice 💖 You just made me the happiest man alive! 🌹✨");
     startFireworks();
 }
 
 // Simple Fireworks Effect
 const canvas = document.getElementById("fireworks");
-const ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("3d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
