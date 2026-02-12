@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    z-index: 10;
+    position: relative;
+}
+
+h1 {
+    color: #e60073;
+    font-size: 38px;
+}
+
+p {
+    font-size: 18px;
+    color: #444;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#yesBtn {
+    background-color: #e60073;
+    color: white;
+}
+
+#yesBtn:hover {
+    background-color: #ff3385;
+    transform: scale(1.1);
+}
+
+#noBtn {
+    background-color: gray;
+    color: white;
+    position: absolute;
+}
+
+.heart {
+    position: absolute;
+    color: red;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+}
+
+.rose {
+    position: absolute;
+    font-size: 25px;
+    animation: fall 5s linear forwards;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+@keyframes fall {
+    0% { transform: translateY(-50px); opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- Background Music -->
+<audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio>
+
+<div class="card">
+    <div style="font-size:28px;">🌹🌹🌹</div>
+    <h1>Will You Be My Valentine, Jasmine? 💕</h1>
+    <p>
+        You make my world brighter every single day ✨❤️  
+        I don’t need a perfect Valentine’s Day…  
+        I just need you 💖
+    </p>
+    <button id="yesBtn" onclick="celebrate()">Yes 💍</button>
+    <button id="noBtn">No 😅</button>
+</div>
+
+<script>
+// Moving NO button
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+// Floating hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 300);
+
+// Roses explosion on Yes
+function celebrate() {
+    for(let i=0; i<100; i++){
+        const rose = document.createElement("div");
+        rose.classList.add("rose");
+        rose.innerHTML = "🌹";
+        rose.style.left = Math.random() * window.innerWidth + "px";
+        rose.style.fontSize = (Math.random() * 30 + 20) + "px";
+        document.body.appendChild(rose);
+        setTimeout(() => rose.remove(), 5000);
+    }
+    alert("Yaaay Jasmine! I love you so much! 💘🌹💖");
+}
+</script>
+
+</body>
+</html>
